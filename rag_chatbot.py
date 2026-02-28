@@ -1,9 +1,4 @@
-# ============================================================
-# RAG CHATBOT - FAISS VERSION (Works on Streamlit Cloud!)
-# ============================================================
-# Replaced ChromaDB with FAISS — simpler, faster, no SQLite issues
-# Run: streamlit run rag_app.py
-# ============================================================
+
 
 import streamlit as st
 from groq import Groq
@@ -81,7 +76,7 @@ st.markdown("""
 </style>
 """, unsafe_allow_html=True)
 
-# ── Session State ─────────────────────────────────────────
+
 if 'chat_history'  not in st.session_state:
     st.session_state.chat_history  = []
 if 'docs_loaded'   not in st.session_state:
@@ -93,14 +88,14 @@ if 'chunk_count'   not in st.session_state:
 if 'doc_names'     not in st.session_state:
     st.session_state.doc_names     = []
 if 'chunks_store'  not in st.session_state:
-    st.session_state.chunks_store  = []   # raw text chunks
+    st.session_state.chunks_store  = []   
 if 'embeddings'    not in st.session_state:
-    st.session_state.embeddings    = None  # numpy array
+    st.session_state.embeddings    = None
 if 'chunk_sources' not in st.session_state:
-    st.session_state.chunk_sources = []   # source name per chunk
+    st.session_state.chunk_sources = []   
 
 
-# ── Load Embedding Model ──────────────────────────────────
+
 @st.cache_resource
 def load_embedding_model():
     return SentenceTransformer('all-MiniLM-L6-v2')
@@ -108,7 +103,7 @@ def load_embedding_model():
 embedding_model = load_embedding_model()
 
 
-# ── Helper Functions ──────────────────────────────────────
+
 def extract_text_from_pdf(uploaded_file):
     reader = pypdf.PdfReader(uploaded_file)
     text   = ""
@@ -193,7 +188,7 @@ Answer:"""
     return response.choices[0].message.content
 
 
-# ── Sidebar ───────────────────────────────────────────────
+
 st.sidebar.markdown("## ⚙️ Configuration")
 
 api_key = st.sidebar.text_input(
@@ -239,13 +234,13 @@ if process_btn and uploaded_files and api_key:
             doc_names.append(uploaded_file.name)
             st.sidebar.success(f"✅ {uploaded_file.name}: {len(chunks)} chunks")
 
-        # Create embeddings for all chunks
+       
         with st.spinner("Creating embeddings..."):
             embeddings = embedding_model.encode(
                 all_chunks, show_progress_bar=False
             )
 
-        # Store in session state (no database needed!)
+       
         st.session_state.chunks_store  = all_chunks
         st.session_state.embeddings    = embeddings
         st.session_state.chunk_sources = all_sources
@@ -282,7 +277,7 @@ st.sidebar.markdown("""
 """)
 
 
-# ── Main Header ───────────────────────────────────────────
+
 st.markdown("<br>", unsafe_allow_html=True)
 st.markdown('<p class="title-text">🤖 RAG Document Chatbot</p>',
             unsafe_allow_html=True)
@@ -322,7 +317,7 @@ else:
 
 st.markdown("")
 
-# ── Chat Interface ────────────────────────────────────────
+
 chat_col, info_col = st.columns([2, 1], gap="large")
 
 with chat_col:
@@ -470,11 +465,12 @@ with info_col:
         </div>
         """, unsafe_allow_html=True)
 
-# ── Footer ─────────────────────────────────────────────────
+
 st.markdown("---")
 st.markdown("""
 <div style='text-align:center; color:#334155; font-size:0.8rem; padding:1rem 0'>
-    Built with ❤️ · Groq LLaMA 3.1 · FAISS · Sentence Transformers · Streamlit ·
-    <a href='https://github.com' style='color:#60a5fa'>View on GitHub</a>
+    Built with ❤️
+    <a href='https://github.com/Akhiliny99/Rag-Chatbot' style='color:#60a5fa'>View on GitHub</a>
 </div>
+
 """, unsafe_allow_html=True)
