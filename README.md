@@ -15,7 +15,6 @@ Sign up with Google
 
 Click API Keys → Create API Key
 
-Otherwise use this key "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" as well.
 
 
 What is RAG?
@@ -84,8 +83,3 @@ Frontend : Streamlit, Plotly
 Language : Python
 
 
-
-
-  384-dim vectors
-- LLaMA 3.1 answers based on uploaded documents only
-- Live: [link]
