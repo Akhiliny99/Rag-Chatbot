@@ -1,3 +1,6 @@
+__import__('pysqlite3')
+import sys
+sys.modules['sqlite3'] = sys.modules.pop('pysqlite3')
 
 import streamlit as st
 import chromadb
@@ -468,4 +471,5 @@ st.markdown("""
     Built with ❤️ 
     <a href='https://github.com/Akhiliny99/Rag-Chatbot' style='color:#60a5fa'>View on GitHub</a>
 </div>
+
 """, unsafe_allow_html=True)
