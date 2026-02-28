@@ -3,7 +3,7 @@ RAG Chatbot
 A Retrieval Augmented Generation (RAG) system that lets you upload any PDF or text document and ask questions about it in natural language. The AI answers based on YOUR documents, not general knowledge.
 
 🔴 Live Demo
-https://rag-chatbot-9qy4alfydz4cscu7exyooa.streamlit.app/
+https://rag-chatbot-h7shvddz7r2ew298xeqbke.streamlit.app/
 
 You can use your own Groq key :
 
